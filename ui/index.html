@@ -22,16 +22,62 @@
 
   <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script type="text/javascript">
+
+    // Standard Map Function
+    // function initialize() {
+    //   var latlng = new google.maps.LatLng(-37.813581,144.963226);
+    //   var myOptions = {
+    //     zoom: 8,
+    //     center: latlng,
+    //     mapTypeControl: false,
+    //     mapTypeId: google.maps.MapTypeId.TERRAIN
+    //   };
+    //   var map = new google.maps.Map(document.getElementById("map_canvas"),
+    //       myOptions);
+    // }
+
+
+    // Circles
+    // Create an object containing LatLng, population.
+    var citymap = {};
+    citymap['melbourne'] = {
+      center: new google.maps.LatLng(-37.81331,144.963226),
+      population: 128458
+    };
+    citymap['ballarat'] = {
+      center: new google.maps.LatLng(-37.561997,143.857727),
+      population: 814310
+    };
+    citymap['sale'] = {
+      center: new google.maps.LatLng(-38.107715,147.064083),
+      population: 384480
+    }
+    var cityCircle;
     function initialize() {
-      var latlng = new google.maps.LatLng(-37.813581,144.963226);
-      var myOptions = {
+      var mapOptions = {
         zoom: 8,
-        center: latlng,
         mapTypeControl: false,
+        center: new google.maps.LatLng(-37.813581,144.963226),
         mapTypeId: google.maps.MapTypeId.TERRAIN
       };
+
       var map = new google.maps.Map(document.getElementById("map_canvas"),
-          myOptions);
+          mapOptions);
+
+      for (var city in citymap) {
+        // Construct the circle for each value in citymap. We scale population by 20.
+        var populationOptions = {
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+          map: map,
+          center: citymap[city].center,
+          radius: citymap[city].population / 20
+        };
+        cityCircle = new google.maps.Circle(populationOptions);
+      }
     }
 
   </script>
