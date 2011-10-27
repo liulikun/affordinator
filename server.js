@@ -47,7 +47,7 @@ console.log("Server running on port " + PORT);
 
 
 function search(query, resp) {
-    var searchKey = {state: 'VIC'};
+    var searchKey = {state: 'VIC', boundary:{$exists:true}};
     if (query['./subs?type'] == 'house') {
         searchKey['house_price'] = {};
         if (query['min-price']) {
@@ -66,11 +66,11 @@ function search(query, resp) {
         }
     }
 
-    db.prices.findOne(searchKey, function(err, suburb) {
-        if (suburb) {
-            console.log(suburb);
+    db.prices.find(searchKey).toArray(function(err, subs){
+        if (subs) {
+            console.log(subs);
             resp.writeHeader(200, {"Content-Type": "text/plain"});
-            resp.write(JSON.stringify(suburb));
+            resp.write(JSON.stringify(subs));
             resp.end();
         }
     });

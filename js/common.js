@@ -60,25 +60,27 @@ function initButton(theMap) {
             success: function(suburbs) {
                 if (suburbs) {
                     var subs = JSON.parse(suburbs);
-                    var points = subs.boundary.split(',');
-                    var latLongs = [];
-                    for (var i = 0; i < points.length; i++) {
-                        var latLong = points[i].replace(/^\s+|\s+$/g, '').split(' ');
-                        var lat = latLong[1] * 1;
-                        var long = latLong[0] * 1;
-                        latLongs.push(new google.maps.LatLng(lat, long));
-                    }
+                    for (var j = 0; j < subs.length; j++) {
+                        var points = subs[j].boundary.split(',');
+                        var latLongs = [];
+                        for (var i = 0; i < points.length; i++) {
+                            var latLong = points[i].replace(/^\s+|\s+$/g, '').split(' ');
+                            var lat = latLong[1] * 1;
+                            var long = latLong[0] * 1;
+                            latLongs.push(new google.maps.LatLng(lat, long));
+                        }
 
-                    console.log(latLongs);
-                    var polygon = new google.maps.Polygon({
-                        paths: latLongs,
-                        strokeColor: "#FF0000",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 2,
-                        fillColor: "#FF0000",
-                        fillOpacity: 0.35
-                    });
-                    polygon.setMap(theMap);
+                        console.log(latLongs);
+                        var polygon = new google.maps.Polygon({
+                            paths: latLongs,
+                            strokeColor: "#FF0000",
+                            strokeOpacity: 0.8,
+                            strokeWeight: 2,
+                            fillColor: "#FF0000",
+                            fillOpacity: 0.35
+                        });
+                        polygon.setMap(theMap);
+                    }
                 }
             }
         });
