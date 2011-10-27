@@ -38,7 +38,7 @@
         var myOptions = {
           zoom: 8,
           center: myLatlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.TERRAIN
         }
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
@@ -52,10 +52,13 @@
           144 + Math.random()
         ];
 
+        var customMarker = 'img/icon.png';
+
         // Create a new marker. Don't add it to the map!
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(pos[0], pos[1]),
-          title: 'Marker ' + i
+          title: 'Marker ' + i,
+          icon: customMarker
         });
 
         // Add the marker to the Fluster
