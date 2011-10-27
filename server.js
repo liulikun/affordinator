@@ -2,9 +2,13 @@ var fs = require('fs'),
         http = require('http'),
         https = require('https'),
         url = require('url'),
+        mongo = require('mongoskin'),
+        db = mongo.db('127.0.0.1:27017/mydb?auto_reconnect=true'),
         querystring = require('querystring'),
         PORT = 8090,
         BASE_DIR = ".";
+
+db.bind('prices');
 
 http.createServer(
         function(req, resp) {
@@ -20,10 +24,9 @@ http.createServer(
                 contentType = 'text/plain';
             }
             console.log(file);
-            if (file == './tags') {
-                resp.writeHeader(200, {"Content-Type":contentType});
-                resp.write(JSON.stringify(BUCKET.slice(BUCKET.length - TAG_BATCH_SIZE)));
-                resp.end();
+            if (file.match(/.\/subs/)) {
+                var query = querystring.parse(file);
+                search(query, resp);
             } else {
                 fs.readFile(file, function (err, data) {
                     if (err) {
@@ -41,3 +44,34 @@ http.createServer(
         }).listen(PORT);
 
 console.log("Server running on port " + PORT);
+
+
+function search(query, resp) {
+    var searchKey = {state: 'VIC'};
+    if (query['./subs?type'] == 'house') {
+        searchKey['house_price'] = {};
+        if (query['min-price']) {
+            searchKey['house_price']['$gte'] = query['min-price'] * 1;
+        }
+        if (query['max-price']) {
+            searchKey['house_price']['$lte'] = query['max-price'] * 1;
+        }
+    } else {
+        searchKey['unit_price'] = {};
+        if (query['min-price']) {
+            searchKey['unit_price']['$gte'] = query['min-price'] * 1;
+        }
+        if (query['max-price']) {
+            searchKey['unit_price']['$lte'] = query['max-price'] * 1;
+        }
+    }
+
+    db.prices.findOne(searchKey, function(err, suburb) {
+        if (suburb) {
+            console.log(suburb);
+            resp.writeHeader(200, {"Content-Type": "text/plain"});
+            resp.write(JSON.stringify(suburb));
+            resp.end();
+        }
+    });
+}
