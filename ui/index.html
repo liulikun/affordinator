@@ -7,23 +7,31 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Google Map</title>
+  <title>AFFORDINATOR - Helping you find the best damn place to live</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- HTML5 Boilerplate -->
+  <!-- HTML5 Boilerplate example -->
   <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
-  <!-- Google Maps Example -->
+  <!-- Google Maps Example - lets go with this for now-->
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- For progressive enhancement -->
   <script src="js/libs/modernizr-2.0.6.min.js"></script>
 
+  <!-- Der -->
   <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  
+  <!-- Custom info box windows = awesome -->
+  <script src="js/libs/infobox.js"></script>
+  
   <script type="text/javascript">
 
     // Standard Map Function
+    // ################################################################################
+
     // function initialize() {
     //   var latlng = new google.maps.LatLng(-37.813581,144.963226);
     //   var myOptions = {
@@ -37,48 +45,146 @@
     // }
 
 
-    // Circles
+    // Circles - red overlays
+    // ################################################################################
+
     // Create an object containing LatLng, population.
-    var citymap = {};
-    citymap['melbourne'] = {
-      center: new google.maps.LatLng(-37.81331,144.963226),
-      population: 128458
-    };
-    citymap['ballarat'] = {
-      center: new google.maps.LatLng(-37.561997,143.857727),
-      population: 814310
-    };
-    citymap['sale'] = {
-      center: new google.maps.LatLng(-38.107715,147.064083),
-      population: 384480
-    }
-    var cityCircle;
+    // var citymap = {};
+    //     citymap['melbourne'] = {
+    //       center: new google.maps.LatLng(-37.81331,144.963226),
+    //       population: 128458
+    //     };
+    //     citymap['ballarat'] = {
+    //       center: new google.maps.LatLng(-37.561997,143.857727),
+    //       population: 814310
+    //     };
+    //     citymap['sale'] = {
+    //       center: new google.maps.LatLng(-38.107715,147.064083),
+    //       population: 384480
+    //     }
+    //     var cityCircle;
+    //     function initialize() {
+    //       var mapOptions = {
+    //         zoom: 8,
+    //         mapTypeControl: false,
+    //         center: new google.maps.LatLng(-37.813581,144.963226),
+    //         mapTypeId: google.maps.MapTypeId.TERRAIN
+    //       };
+    // 
+    //       var map = new google.maps.Map(document.getElementById("map_canvas"),
+    //           mapOptions);
+    // 
+    //       for (var city in citymap) {
+    //         // Construct the circle for each value in citymap. We scale population by 20.
+    //         var populationOptions = {
+    //           strokeColor: "#FF0000",
+    //           strokeOpacity: 0.8,
+    //           strokeWeight: 2,
+    //           fillColor: "#FF0000",
+    //           fillOpacity: 0.35,
+    //           map: map,
+    //           center: citymap[city].center,
+    //           radius: citymap[city].population / 20
+    //         };
+    //         cityCircle = new google.maps.Circle(populationOptions);
+    //       }
+    //     }
+    
+    // Custom marker (woopdy doo)
+    // ################################################################################
+
+    // function initialize() {
+    //   var myLatlng = new google.maps.LatLng(-37.813581,144.963226);
+    //   var myOptions = {
+    //     zoom: 8,
+    //     center: myLatlng,
+    //     mapTypeId: google.maps.MapTypeId.TERRAIN
+    //   }
+    // 
+    //   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    // 
+    //   var contentString = '<div id="content">'+
+    //       '<div id="siteNotice">'+
+    //       '</div>'+
+    //       '<h1 id="firstHeading" class="firstHeading">Melbourne</h1>'+
+    //       '<div id="bodyContent">'+
+    //       '<p>Melbourne is awesome.</p>'+
+    //       '</div>'+
+    //       '</div>';
+    // 
+    //   var infowindow = new google.maps.InfoWindow({
+    //       content: contentString,
+    //       maxWidth: 400
+    //   });
+    // 
+    //   var customMarker = 'img/icon.png';
+    // 
+    //   var marker = new google.maps.Marker({
+    //       position: myLatlng,
+    //       map: map,
+    //       title:"Melbourne",
+    //       icon: customMarker
+    //   });
+    // 
+    //   google.maps.event.addListener(marker, 'click', function() {
+    //     infowindow.open(map,marker);
+    //   });
+    // }
+
+   // Use info box to render a custom info window - preferred
+   // ################################################################################
+
     function initialize() {
-      var mapOptions = {
-        zoom: 8,
-        mapTypeControl: false,
-        center: new google.maps.LatLng(-37.813581,144.963226),
+      var secheltLoc = new google.maps.LatLng(-37.813581,144.963226);
+
+      var myMapOptions = {
+         zoom: 8,
+         center: secheltLoc,
         mapTypeId: google.maps.MapTypeId.TERRAIN
       };
+      var theMap = new google.maps.Map(document.getElementById("map_canvas"), myMapOptions);
 
-      var map = new google.maps.Map(document.getElementById("map_canvas"),
-          mapOptions);
+      var customMarker = 'img/icon.png';
+  
+      var marker = new google.maps.Marker({
+        map: theMap,
+        draggable: true,
+        position: new google.maps.LatLng(-37.813581,144.963226),
+        visible: true,
+        icon: customMarker
+      });
 
-      for (var city in citymap) {
-        // Construct the circle for each value in citymap. We scale population by 20.
-        var populationOptions = {
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FF0000",
-          fillOpacity: 0.35,
-          map: map,
-          center: citymap[city].center,
-          radius: citymap[city].population / 20
-        };
-        cityCircle = new google.maps.Circle(populationOptions);
-      }
+      var boxText = document.createElement("div");
+      boxText.style.cssText = "border: 1px solid #000; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
+      boxText.innerHTML = "<h1>Melbourne</h1>Victoria, Australia";
+
+      var myOptions = {
+         content: boxText
+        ,disableAutoPan: false
+        ,maxWidth: 0
+        ,pixelOffset: new google.maps.Size(-140, -120)
+        ,zIndex: null
+        ,boxStyle: { 
+          background: "url('tipbox.gif') no-repeat"
+          ,opacity: 0.75
+          ,width: "280px"
+         }
+        ,closeBoxMargin: "10px 2px 2px 2px"
+        ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+        ,infoBoxClearance: new google.maps.Size(1, 1)
+        ,isHidden: false
+        ,pane: "floatPane"
+        ,enableEventPropagation: false
+      };
+
+      google.maps.event.addListener(marker, "click", function (e) {
+        ib.open(theMap, this);
+      });
+
+      var ib = new InfoBox(myOptions);
+      ib.open(theMap, marker);
     }
+
 
   </script>
 </head>
