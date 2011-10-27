@@ -93,7 +93,7 @@ function initButton(theMap) {
 
 function clearPolygons(polygons) {
     while (polygons.length > 0) {
-        polygon = polygons.pop;
+        var polygon = polygons.pop();
         polygon.setMap(null);
     }
 }
