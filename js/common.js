@@ -115,7 +115,8 @@ function initButton(theMap) {
                             visible: false
                         });
 
-                        var formattedPrice = Math.round(subs[j]['house_price']/1000) + 'k';
+                        
+                        var formattedPrice = $('input[name=type]:checked').val() == 'house' ? Math.round(subs[j]['house_price']/1000) + 'k' : Math.round(subs[j]['unit_price']/1000) + 'k';
                         var boxText = document.createElement("div");
                         boxText.style.cssText = "border: 1px solid #000; border-radius: 4px; font-size: 11px; text-align: center; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
                         //boxText.innerHTML = "<strong>" + subs[j]['suburb'] + "</strong><br /><span>$" + formattedPrice + "</span>";
