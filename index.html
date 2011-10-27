@@ -48,11 +48,15 @@
     <div class="padding">
         <h1>Where can I afford to live?</h1>
         <form>
+            <label for="min-price">Pocket Change (Minimum)</label>
             <input type="text" id="min-price" placeholder="Enter $ minimum" class="price-field" value="500000"/>
+            <label for="max-price">Max Splash (Maximum)</label>
             <input type="text" id="max-price" placeholder="Enter $ maximum" class="price-field" value="600000"/>
-            <input type="radio" name="type" value="house" checked='checked'/>
-            <input type="radio" name="type" value="unit"/>
-            <button id='submit'>Search</button>
+            <fieldset>
+            <label><input type="radio" name="type" value="house" checked='checked'/>House</label>
+            <label><input type="radio" name="type" value="unit"/>Unit</label>
+            </fieldset>
+            <button id='submit'>Bring the 'Burbs!</button>
         </form>
     </div>
 </section>
