@@ -20,26 +20,26 @@ function initialize() {
     });
 
     var boxText = document.createElement("div");
-    boxText.style.cssText = "border: 1px solid #000; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
+    boxText.style.cssText = "border: 1px solid #000; border-radius: 4px; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
     boxText.innerHTML = "<h1>Melbourne</h1>Victoria, Australia";
 
     var myOptions = {
-        content: boxText
-        ,disableAutoPan: false
-        ,maxWidth: 0
-        ,pixelOffset: new google.maps.Size(-140, -120)
-        ,zIndex: null
-        ,boxStyle: {
-            background: "url('tipbox.gif') no-repeat"
-            ,opacity: 0.75
-            ,width: "280px"
-        }
-        ,closeBoxMargin: "10px 2px 2px 2px"
-        ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-        ,infoBoxClearance: new google.maps.Size(1, 1)
-        ,isHidden: false
-        ,pane: "floatPane"
-        ,enableEventPropagation: false
+        content: boxText,
+        disableAutoPan: false,
+        maxWidth: 0,
+        pixelOffset: new google.maps.Size(-140, -120),
+        zIndex: null,
+        boxStyle: {
+            background: "url('tipbox.gif') no-repeat",
+            opacity: 0.75,
+            width: "280px"
+        },
+        closeBoxMargin: "10px 2px 2px 2px",
+        closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+        infoBoxClearance: new google.maps.Size(1, 1),
+        isHidden: false,
+        pane: "floatPane",
+        enableEventPropagation: false
     };
 
     google.maps.event.addListener(marker, "click", function (e) {
