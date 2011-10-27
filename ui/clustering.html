@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>AFFORDINATOR - Helping you find the best damn place to live</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- HTML5 Boilerplate example -->
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+  <!-- Google Maps Example - lets go with this for now-->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- For progressive enhancement -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+
+  <!-- Der -->
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  
+  <!-- Custom info box windows = awesome -->
+  <script src="js/libs/fluster2.js"></script>
+  
+  <script type="text/javascript">
+
+    // Basic clustering with Fluster
+    // ################################################################################
+    function initialize() {
+
+      // Create a new map with some default settings
+        var myLatlng = new google.maps.LatLng(-37.813581,144.963226);
+        var myOptions = {
+          zoom: 8,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+      // Initialize Fluster and give it a existing map
+      var fluster = new Fluster2(map);
+
+      for(var i = 0; i < 200; i++)
+      {
+        var pos = [
+          -37 - Math.random(),
+          144 + Math.random()
+        ];
+
+        // Create a new marker. Don't add it to the map!
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(pos[0], pos[1]),
+          title: 'Marker ' + i
+        });
+
+        // Add the marker to the Fluster
+        fluster.addMarker(marker);
+      }
+
+      // Set styles
+      // These are the same styles as default, assignment is only for demonstration ...
+      fluster.styles = {
+        // This style will be used for clusters with more than 0 markers
+        0: {
+          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m1.png',
+          textColor: '#FFFFFF',
+          width: 53,
+          height: 52
+        },
+        // This style will be used for clusters with more than 10 markers
+        10: {
+          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m2.png',
+          textColor: '#FFFFFF',
+          width: 56,
+          height: 55
+        },
+        20: {
+          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m3.png',
+          textColor: '#FFFFFF',
+          width: 66,
+          height: 65
+        }
+      };
+
+      // Initialize Fluster
+      // This will set event handlers on the map and calculate clusters the first time.
+      fluster.initialize();
+
+    }
+
+
+  </script>
+</head>
+
+<body onload="initialize()">
+
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+
+  <section id="control-panel" class="container">
+    <div class="padding">
+    <h1>Where can I afford to live?</h1>
+    <form>
+    <input type="text" id="search-field" />
+    <select>
+      <option>How much coin?</option>
+    </select>
+    <select>
+      <option>How many rooms?</option>
+    </select>
+    <button>Search</button>
+    </form>
+    </div>
+  </section>
+
+  <footer id="brand" class="container">
+    <div class="padding">
+    <h1>affordinator</h1>
+    Helping you find somewhere to live since you got evicted from City Square last week
+    </div>
+  </footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>
