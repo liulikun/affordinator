@@ -5,7 +5,16 @@ function initialize() {
     var myMapOptions = {
         zoom: 12,
         center: secheltLoc,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeControl: false,
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+        },
+        panControl: true,
+        panControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+        }
     };
     var theMap = new google.maps.Map(document.getElementById("map_canvas"), myMapOptions);
 
