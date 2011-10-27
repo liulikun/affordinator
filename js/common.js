@@ -3,7 +3,7 @@ function initialize() {
     var secheltLoc = new google.maps.LatLng(-37.813581, 144.963226);
 
     var myMapOptions = {
-        zoom: 8,
+        zoom: 12,
         center: secheltLoc,
         mapTypeId: google.maps.MapTypeId.TERRAIN
     };
@@ -54,11 +54,13 @@ function initialize() {
 }
 
 function initButton(theMap) {
+    var polygons = [];
     $('#submit').bind('click', function(e) {
         $.ajax({
             url: "subs?type=" + $('input[name=type]:checked').val() + '&min-price=' + $('#min-price').val() + '&max-price=' + $('#max-price').val(),
             success: function(suburbs) {
                 if (suburbs) {
+                    clearPolygons(polygons);
                     var subs = JSON.parse(suburbs);
                     for (var j = 0; j < subs.length; j++) {
                         var points = subs[j].boundary.split(',');
@@ -80,10 +82,18 @@ function initButton(theMap) {
                             fillOpacity: 0.35
                         });
                         polygon.setMap(theMap);
+                        polygons.push(polygon);
                     }
                 }
             }
         });
         return false;
     });
+}
+
+function clearPolygons(polygons) {
+    while (polygons.length > 0) {
+        polygon = polygons.pop;
+        polygon.setMap(null);
+    }
 }
