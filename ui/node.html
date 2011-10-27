@@ -25,75 +25,23 @@
   <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
   
   <!-- Custom info box windows = awesome -->
-  <script src="/js/libs/fluster2.js"></script>
+  <script src="/js/libs/infobox.js"></script>
   
   <script type="text/javascript">
 
-    // Basic clustering with Fluster
+    // Standard Map Function
     // ################################################################################
+
     function initialize() {
-
-      // Create a new map with some default settings
-        var myLatlng = new google.maps.LatLng(-37.813581,144.963226);
-        var myOptions = {
-          zoom: 8,
-          center: myLatlng,
-          mapTypeId: google.maps.MapTypeId.TERRAIN
-        }
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-      // Initialize Fluster and give it a existing map
-      var fluster = new Fluster2(map);
-
-      for(var i = 0; i < 200; i++)
-      {
-        var pos = [
-          -37 - Math.random(),
-          144 + Math.random()
-        ];
-
-        var customMarker = 'img/icon.png';
-
-        // Create a new marker. Don't add it to the map!
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(pos[0], pos[1]),
-          title: 'Marker ' + i,
-          icon: customMarker
-        });
-
-        // Add the marker to the Fluster
-        fluster.addMarker(marker);
-      }
-
-      // Set styles
-      // These are the same styles as default, assignment is only for demonstration ...
-      fluster.styles = {
-        // This style will be used for clusters with more than 0 markers
-        0: {
-          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m1.png',
-          textColor: '#FFFFFF',
-          width: 53,
-          height: 52
-        },
-        // This style will be used for clusters with more than 10 markers
-        10: {
-          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m2.png',
-          textColor: '#FFFFFF',
-          width: 56,
-          height: 55
-        },
-        20: {
-          image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m3.png',
-          textColor: '#FFFFFF',
-          width: 66,
-          height: 65
-        }
+      var latlng = new google.maps.LatLng(-37.813581,144.963226);
+      var myOptions = {
+        zoom: 8,
+        center: latlng,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
       };
-
-      // Initialize Fluster
-      // This will set event handlers on the map and calculate clusters the first time.
-      fluster.initialize();
-
+      var map = new google.maps.Map(document.getElementById("map_canvas"),
+          myOptions);
     }
 
 
@@ -108,13 +56,13 @@
     <div class="padding">
     <h1>Where can I afford to live?</h1>
     <form>
-    <input type="text" id="search-field" />
-    <select>
+    <input type="text" id="search-field" placeholder="Enter $ amount" />
+    <!-- <select>
       <option>How much coin?</option>
     </select>
     <select>
       <option>How many rooms?</option>
-    </select>
+    </select> -->
     <button>Search</button>
     </form>
     </div>
