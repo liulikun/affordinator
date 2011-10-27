@@ -8,8 +8,17 @@ var fs = require('fs'),
 
 http.createServer(
         function(req, resp) {
-            var file = BASE_DIR + req.url,
-                    contentType = file.match(/html$/) ? 'text/html' : 'text/plain';
+            var file = BASE_DIR + req.url;
+            var contentType;
+            if (file.match(/html$/)) {
+                contentType = 'text/html';
+            } else if (file.match(/js$/)) {
+                contentType = 'text/javascript';
+            } else if (file.match(/css$/)) {
+                contentType = 'text/css';
+            } else {
+                contentType = 'text/plain';
+            }
             console.log(file);
             if (file == './tags') {
                 resp.writeHeader(200, {"Content-Type":contentType});
