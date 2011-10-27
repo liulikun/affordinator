@@ -12,7 +12,15 @@ new lazy(fs.createReadStream('vic_suburb.txt')).lines.forEach(function(line) {
     var searchKey = {suburb:suburb, state:'VIC'};
     db.prices.findOne(searchKey, function(err, updated_suburb) {
         if (updated_suburb) {
-            db.prices.update(searchKey, {$set: {boundary:boundary}}, function(err) {
+            var points = boundary.split(',');
+            var latLongs = [];
+            for (var i = 0; i < points.length; i++) {
+                var latLong = points[i].replace(/^\s+|\s+$/g, '').split(' ');
+                var lat = latLong[1] * 1;
+                var long = latLong[0] * 1;
+                latLongs.push([lat, long]);
+            }
+            db.prices.update(searchKey, {$set: {boundary:latLongs}}, function(err) {
                 if (err) {
                     console.log('update error', err);
                 } else {

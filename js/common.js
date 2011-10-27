@@ -95,16 +95,11 @@ function initButton(theMap) {
                     clearInfoBoxes(infoBoxes);
                     var subs = JSON.parse(suburbs);
                     for (var j = 0; j < subs.length; j++) {
-                        var points = subs[j].boundary.split(',');
                         var latLongs = [];
-                        for (var i = 0; i < points.length; i++) {
-                            var latLong = points[i].replace(/^\s+|\s+$/g, '').split(' ');
-                            var lat = latLong[1] * 1;
-                            var long = latLong[0] * 1;
-                            latLongs.push(new google.maps.LatLng(lat, long));
+                        for (var i = 0; i < subs[j].boundary.length; i++) {
+                            latLongs.push(new google.maps.LatLng(subs[j].boundary[i][0], subs[j].boundary[i][1]));
                         }
 
-                        console.log(latLongs);
                         var polygon = new google.maps.Polygon({
                             paths: latLongs,
                             strokeColor: "#FF0000",
@@ -114,9 +109,19 @@ function initButton(theMap) {
                             fillOpacity: 0.35
                         });
                         polygon.setMap(theMap);
-                        polygons.push(polygon);
-
                         var center = polygon.getBounds().getCenter();
+
+//                        google.maps.event.addListener(polygon, 'click', new function(e) {
+//                            var infowindow = new google.maps.InfoWindow();
+//
+//                            infowindow.setContent(subs[j].suburb);
+//                            infowindow.setPosition(center);
+//
+//                            infowindow.open(theMap);
+//
+//                        });
+
+                        polygons.push(polygon);
                         var marker = new google.maps.Marker({
                             map: theMap,
                             draggable: true,
