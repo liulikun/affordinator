@@ -123,7 +123,7 @@ function initButton(theMap) {
 
                         var myOptions = {
                             content: boxText,
-                            disableAutoPan: false,
+                            disableAutoPan: true,
                             maxWidth: 0,
                             pixelOffset: new google.maps.Size(-22, -18),
                             zIndex: null,
