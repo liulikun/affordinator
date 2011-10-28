@@ -148,14 +148,16 @@ function initButton(theMap) {
                             };
                         })(marker, subs[j].suburb));
 
-                        google.maps.event.addListener(polygon, 'click', (function(sub) {
+                        var fullPrice = $('input[name=type]:checked').val() == 'house' ? subs[j]['house_price'] : subs[j]['unit_price'];
+                        var formattedPrice = Math.round(fullPrice/1000) + 'k';
+
+                        google.maps.event.addListener(polygon, 'click', (function(sub,fullPrice) {
                             return function() {
-                                popOut(sub);
+                                popOut(sub,fullPrice);
                             };
-                        })(subs[j].suburb));
+                        })(subs[j].suburb,fullPrice));
 
 
-                        var formattedPrice = $('input[name=type]:checked').val() == 'house' ? Math.round(subs[j]['house_price']/1000) + 'k' : Math.round(subs[j]['unit_price']/1000) + 'k';
                         var boxText = document.createElement("div");
                         boxText.style.cssText = "border: 1px solid #000; border-radius: 4px; font-size: 11px; text-align: center; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
                         //boxText.innerHTML = "<strong>" + subs[j]['suburb'] + "</strong><br /><span>$" + formattedPrice + "</span>";
@@ -203,12 +205,13 @@ function clearInfoBoxes(infoBoxes) {
     }
 }
 
-function popOut(suburb) {
-  $('#brand h1').html(suburb);
-  $('#brand').show('slow');
+function popOut(suburb,fullPrice) {
+    $('#brand').slideDown('slow', function() {
+        $('#brand h1').html(suburb);
+        $('#brand h2').html('$' + (fullPrice + '').replace(/(\d)(?=(\d\d\d)+(?!\d))/g,'\$1,'));
+    });
+    
 }
-
 function closePoppa() {
-  $('#brand').hide('slow');
-   return false;
+    $('#brand').slideUp('slow');
 }
