@@ -320,3 +320,99 @@ fieldset input {
   border-radius: 4px;
 /*  box-shadow: 0 0 2px 4px rgba(0,0,0,0.8);*/
 }
+
+.last-column img {
+  display: none;
+}
+
+
+
+/* Change layout 2.0
+ ****************************************************************************** */
+
+
+#control-panel {
+  left: 2em;
+  right: auto;
+
+  bottom: auto;
+  top: 2em;
+}
+
+#brand {
+  bottom: auto;
+  top: 0;
+  right: 0;
+  left: auto;
+  height: 100%;
+  width: 280px;
+  box-shadow: inset 10px 0 20px rgba(0,0,0,0.5);
+}
+
+#brand .padding {
+  padding-left: 2em;
+  padding-right: 0.4em;
+  padding-top: 1.8em;
+}
+
+#brand .pictures {
+  margin-right: 0;
+}
+
+#brand h1 {
+  line-height: 1em;
+  letter-spacing: -3px;
+  width: 240px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+#brand h2 {
+  background-position: left;
+  padding: 0 0 0 40px;
+  letter-spacing: -3px;
+}
+
+.kid {
+  right: 1.5em;
+}
+
+.column {
+  float: none;
+  width: auto;
+}
+
+.close-poppa {
+  top: 10px;
+  font-size: 1.5em;
+  line-height: 1.4;
+  left: -10px;
+  right: auto;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  text-align: center;
+  border-radius: 30px;
+}
+
+.last-column {
+  background-color: transparent;
+}
+
+#brand .pictures {
+  display: none;
+}
+
+.lorem {
+  display: none;
+}
+
+.last-column img {
+  display: block;
+}
+
+
+
+
+
+
