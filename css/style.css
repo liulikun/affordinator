@@ -310,5 +310,13 @@ fieldset input {
 }*/
 
 .flyout {
-    color: #000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 1px #000;
+  background: rgba(0,0,0,0.8);
+  padding: 6px;
+  text-align: center;
+  border-radius: 4px;
+/*  box-shadow: 0 0 2px 4px rgba(0,0,0,0.8);*/
 }

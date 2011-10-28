@@ -92,7 +92,7 @@ function initButton(theMap) {
         boxClass: 'flyout',
         disableAutoPan: false,
         maxWidth: 0,
-        pixelOffset: new google.maps.Size(22, -38),
+        pixelOffset: new google.maps.Size(30, -30),
         zIndex: 999,
 //        boxStyle: {
 //            opacity: 0.75
@@ -102,7 +102,7 @@ function initButton(theMap) {
         infoBoxClearance: new google.maps.Size(1, 1),
         isHidden: false,
         pane: "floatPane",
-        enableEventPropagation: false
+        enableEventPropagation: true
     };
 
     var flyOut = new InfoBox(flyOutOptions);
@@ -147,6 +147,10 @@ function initButton(theMap) {
                             flyOut.open(theMap, markerArg);
                             };
                         })(marker, subs[j].suburb));
+                        
+                        google.maps.event.addListener(polygon, 'mouseout', function(e) {
+                            flyOut.close();
+                        });
 
                         var fullPrice = $('input[name=type]:checked').val() == 'house' ? subs[j]['house_price'] : subs[j]['unit_price'];
                         var formattedPrice = Math.round(fullPrice/1000) + 'k';
@@ -177,7 +181,7 @@ function initButton(theMap) {
                             infoBoxClearance: new google.maps.Size(1, 1),
                             isHidden: false,
                             pane: "floatPane",
-                            enableEventPropagation: false
+                            enableEventPropagation: true
                         };
 
                         var ib = new InfoBox(myOptions);
