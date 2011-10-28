@@ -190,6 +190,8 @@ fieldset input {
   width: 100%;
   left: 0;
   z-index: 1;
+  height: 200px;
+  display: none;
   /* Top Down */
 /*  border-top: 1px solid #444;*/
 /*  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(68,68,68,0.9) 100%);
@@ -257,3 +259,7 @@ fieldset input {
 /*.touch #control-panel {
   width: 50%;
 }*/
+
+.flyout {
+    color: #000;
+}

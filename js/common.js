@@ -87,6 +87,26 @@ if (!google.maps.Polygon.prototype.getBounds) {
 function initButton(theMap) {
     var polygons = [];
     var infoBoxes = [];
+
+    var flyOutOptions = {
+        boxClass: 'flyout',
+        disableAutoPan: false,
+        maxWidth: 0,
+        pixelOffset: new google.maps.Size(22, -38),
+        zIndex: 999,
+//        boxStyle: {
+//            opacity: 0.75
+//        },
+//        closeBoxMargin: "2px 2px 2px 2px",
+        closeBoxURL: "",
+        infoBoxClearance: new google.maps.Size(1, 1),
+        isHidden: false,
+        pane: "floatPane",
+        enableEventPropagation: false
+    };
+
+    var flyOut = new InfoBox(flyOutOptions);
+
     $('#submit').bind('click', function(e) {
         $.ajax({
             url: "subs?type=" + $('input[name=type]:checked').val() + '&min-price=' + $('#min-price').val() + '&max-price=' + $('#max-price').val(),
@@ -110,19 +130,9 @@ function initButton(theMap) {
                             fillOpacity: 0.35
                         });
                         polygon.setMap(theMap);
-                        var center = polygon.getBounds().getCenter();
-
-//                        google.maps.event.addListener(polygon, 'click', new function(e) {
-//                            var infowindow = new google.maps.InfoWindow();
-//
-//                            infowindow.setContent(subs[j].suburb);
-//                            infowindow.setPosition(center);
-//
-//                            infowindow.open(theMap);
-//
-//                        });
-
                         polygons.push(polygon);
+
+                        var center = polygon.getBounds().getCenter();
                         var marker = new google.maps.Marker({
                             map: theMap,
                             draggable: true,
@@ -130,7 +140,21 @@ function initButton(theMap) {
                             visible: false
                         });
 
-                        
+                        google.maps.event.addListener(polygon, 'mouseover', (function(markerArg, sub) {
+                            return function() {
+                            flyOut.close();
+                            flyOut.setContent(sub);
+                            flyOut.open(theMap, markerArg);
+                            };
+                        })(marker, subs[j].suburb));
+
+                        google.maps.event.addListener(polygon, 'click', (function(sub) {
+                            return function() {
+                                popOut(sub);
+                            };
+                        })(subs[j].suburb));
+
+
                         var formattedPrice = $('input[name=type]:checked').val() == 'house' ? Math.round(subs[j]['house_price']/1000) + 'k' : Math.round(subs[j]['unit_price']/1000) + 'k';
                         var boxText = document.createElement("div");
                         boxText.style.cssText = "border: 1px solid #000; border-radius: 4px; font-size: 11px; text-align: center; margin-top: 8px; color: #fff; background: rgba(0, 0, 0, 1); padding: 5px;";
@@ -177,4 +201,14 @@ function clearInfoBoxes(infoBoxes) {
         var infoBox = infoBoxes.pop();
         infoBox.close();
     }
+}
+
+function popOut(suburb) {
+  $('#brand h1').html(suburb);
+  $('#brand').show('slow');
+}
+
+function closePoppa() {
+  $('#brand').hide('slow');
+   return false;
 }
