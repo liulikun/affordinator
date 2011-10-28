@@ -116,7 +116,7 @@ body { height: 100%; margin: 0; padding: 0 }
 
 h1 {
   color: #fff;
-  text-shadow: 1px 1px 1px #000;
+  text-shadow: 0px 1px 1px #000;
   font-size: 1.4em;
   margin: 0 0 0.4em;
 }
@@ -133,12 +133,12 @@ h1 {
 
 #control-panel {
   position: absolute;
-  bottom: 340px;
+  top: 2em;
   left: 2em;
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
   width: 20%;
   min-width: 180px;
-  max-width: 270px;
+  max-width: 250px;
   border: 1px solid #444;
   border-radius: 4px;
 }
@@ -167,7 +167,7 @@ h1 {
 }
 
 #control-panel label {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 fieldset label {
@@ -178,27 +178,46 @@ fieldset input {
   margin-right: 0.4em;
 }
 
+#brand .padding {
+  padding: 0 0 0.1em;
+}
+
 #brand {
   position: absolute;
   bottom: 0;
   width: 100%;
   left: 0;
-  border-top: 1px solid #000;
+  z-index: 1;
+  /* Top Down */
+/*  border-top: 1px solid #444;*/
+/*  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(68,68,68,0.9) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(68,68,68,0.9)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(68,68,68,0.5) 100%);*/
+
+  /* Bottoms up */
+  background: -moz-linear-gradient(top, rgba(68,68,68,0.9) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(68,68,68,0.9)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(68,68,68,0.3) 0%,rgba(0,0,0,0.9) 100%); /* Chrome10+,Safari5.1+ */
+
 }
 
 #brand h1 {
-  font-size: 4em;
+  font-size: 3em;
   letter-spacing: -0.1em;
   margin: 0 0.3em;
-  float: right;
+  float: left;
+  padding: 0;
 }
 
 #brand h2 {
-  padding-top: 1.7em;
-  margin-bottom: 0;
-  font-size: 1.1em;
+  padding: 0;
+  margin: 0;
+  font-size: 1.3em;
   font-weight: lighter;
-  text-align: right;
+  position: relative;
+  top: 1.2em;
+  color: #fff;
+/*  text-align: right;*/
 }
 
 ::-webkit-input-placeholder {
@@ -207,23 +226,22 @@ fieldset input {
 
 .kid {
   position: absolute;
-  bottom: 71px;
-  right: 0.5em;
+  bottom: 0;
+  right: 0;
+  z-index: 99999;
 }
 
 #submit {
   padding: 8px 16px;
   border-radius: 4px;
   border: 1px solid #888;
-  color: #eee;
+  color: #fff;
   font-size: 1.4em;
+  text-shadow: 1px 1px 1px #000;
   font-weight: bold;
   background: -moz-linear-gradient(top, rgba(122,122,122,1) 0%, rgba(3,5,15,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(122,122,122,1)), color-stop(100%,rgba(3,5,15,1))); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, rgba(122,122,122,1) 0%,rgba(3,5,15,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(122,122,122,1) 0%,rgba(3,5,15,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(122,122,122,1) 0%,rgba(3,5,15,1) 100%); /* IE10+ */
-  background: linear-gradient(top, rgba(122,122,122,1) 0%,rgba(3,5,15,1) 100%); /* W3C */
 }
 
 .container fieldset {
