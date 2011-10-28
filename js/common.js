@@ -9,12 +9,12 @@ function initialize() {
         mapTypeControl: false,
         zoomControl: true,
         zoomControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER,
-            style: google.maps.ZoomControlStyle.SMALL
+            position: google.maps.ControlPosition.LEFT_TOP
+            //style: google.maps.ZoomControlStyle.SMALL
         },
         panControl: true,
         panControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER
+            position: google.maps.ControlPosition.LEFT_TOP
         }
     };
     var theMap = new google.maps.Map(document.getElementById("map_canvas"), myMapOptions);

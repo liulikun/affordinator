@@ -133,8 +133,10 @@ h1 {
 
 #control-panel {
   position: absolute;
+/*  bottom: 6em;
+  left: 2em;*/
   top: 2em;
-  left: 2em;
+  right: 2em;
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
   width: 20%;
   min-width: 180px;
@@ -197,7 +199,7 @@ fieldset input {
   /* Bottoms up */
   background: -moz-linear-gradient(top, rgba(68,68,68,0.9) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(68,68,68,0.9)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(68,68,68,0.3) 0%,rgba(0,0,0,0.9) 100%); /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, rgba(68,68,68,0.4) 0%,rgba(0,0,0,0.8) 100%); /* Chrome10+,Safari5.1+ */
 
 }
 
