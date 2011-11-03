@@ -26,7 +26,8 @@
     <script src="/js/libs/modernizr-2.0.6.min.js"></script>
 
     <!-- Der -->
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script> -->
+    <script src="/js/google-maps.js"></script>
 
     <!-- Custom info box windows = awesome -->
     <script src="/js/libs/infobox.js"></script>
@@ -49,9 +50,9 @@
         <h1>Where can I afford to live?</h1>
         <form>
             <label for="min-price">Pocket Change (Minimum)</label>
-            <input type="text" id="min-price" placeholder="Enter $ minimum" class="price-field" value="500000"/>
+            <input type="text" id="min-price" placeholder="Enter $ minimum" class="price-field" value=""/>
             <label for="max-price">Max Splash (Maximum)</label>
-            <input type="text" id="max-price" placeholder="Enter $ maximum" class="price-field" value="600000"/>
+            <input type="text" id="max-price" placeholder="Enter $ maximum" class="price-field" value=""/>
             <fieldset>
             <label><input type="radio" name="type" value="house" checked='checked'/>House</label>
             <label><input type="radio" name="type" value="unit"/>Unit</label>

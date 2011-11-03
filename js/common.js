@@ -8,14 +8,22 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         mapTypeControl: false,
         zoomControl: true,
+        // PANEL RIGHT
         zoomControlOptions: {
-            position: google.maps.ControlPosition.LEFT_TOP
-            //style: google.maps.ZoomControlStyle.SMALL
+            position: google.maps.ControlPosition.LEFT_BOTTOM
         },
-        panControl: true,
+        panControl: false,
         panControlOptions: {
             position: google.maps.ControlPosition.LEFT_TOP
         }
+        // PANEL BOTTOM
+        // zoomControlOptions: {
+        //     position: google.maps.ControlPosition.LEFT_TOP
+        // },
+        // panControl: true,
+        // panControlOptions: {
+        //     position: google.maps.ControlPosition.LEFT_TOP
+        // }
     };
     var theMap = new google.maps.Map(document.getElementById("map_canvas"), myMapOptions);
 
