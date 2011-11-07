@@ -1,0 +1,11 @@
+{
+    "name": "affordinator",
+    "version": "0.0.1",
+    "description": "search on affordability",
+    "dependencies" : {
+        "lazy" : "1.0.7",
+	"mongoskin" : "0.1.3",
+   	"sax" : "0.3.2"
+    }
+}
+
