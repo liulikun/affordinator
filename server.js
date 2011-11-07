@@ -5,7 +5,7 @@ var fs = require('fs'),
         mongo = require('mongoskin'),
         db = mongo.db('127.0.0.1:27017/mydb?auto_reconnect=true'),
         querystring = require('querystring'),
-        PORT = 8090,
+        PORT = process.env.PORT || 8090,
         BASE_DIR = ".";
 
 db.bind('prices');
