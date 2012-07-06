@@ -1,0 +1,16 @@
+db.prices.remove({suburb:'BALLARAT EAST'});
+db.prices.remove({suburb:'COWES'});
+db.prices.remove({suburb:'CAPE WOOLAMAI'});
+db.prices.remove({suburb:'CAROLINE SPRINGS'});
+db.prices.remove({suburb:'KEALBA'});
+db.prices.remove({suburb:'BITTERN'});
+db.prices.remove({suburb:'MARYSVILLE'});
+db.prices.remove({suburb:'SORRENTO'});
+db.prices.remove({suburb:'NUMURKAH'});
+db.prices.remove({suburb:'VENTNOR'});
+db.prices.remove({suburb:'WARRNAMBOOL'});
+db.prices.remove({suburb:'ARCADIA'});
+db.prices.remove({suburb:'HAMILTON'});
+db.prices.remove({suburb:'TARNEIT'});
+db.prices.remove({suburb:'RYE'});
+db.prices.remove({suburb:'HAMILTON'});
