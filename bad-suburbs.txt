@@ -13,4 +13,4 @@ db.prices.remove({suburb:'ARCADIA'});
 db.prices.remove({suburb:'HAMILTON'});
 db.prices.remove({suburb:'TARNEIT'});
 db.prices.remove({suburb:'RYE'});
-db.prices.remove({suburb:'HAMILTON'});
+db.prices.remove({suburb:'CAPE WOOLAMAI'});
