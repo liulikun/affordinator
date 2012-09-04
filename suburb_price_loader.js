@@ -1,6 +1,6 @@
 var fs = require('fs');
 var mongo = require('mongoskin'),
-        db = mongo.db('mongodb://heroku:b7828f91799ed3e4a3874288d7043823@alex.mongohq.com:10020/app1717097/mydb?auto_reconnect=true');
+        db = mongo.db('mongodb://heroku:b7828f91799ed3e4a3874288d7043823@alex.mongohq.com:10020/app1717097?auto_reconnect=true');
 
 var sax = require("sax");
 var saxStream = sax.createStream(true);
@@ -47,7 +47,7 @@ saxStream.on("text", function (t) {
         } else if (currentTag == 'Month') {
             month = t;
         } else if (currentTag == 'Price') {
-            if (year == '2011' && month == 'Aug' && type.toLowerCase() == (process.argv[2] || 'house')) {
+            if (state == 'VIC' && year == '2011' && month == 'Aug' && type.toLowerCase() == (process.argv[2] || 'house')) {
                 price = t;
 
                 var priceKey = [type];
