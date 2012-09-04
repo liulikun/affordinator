@@ -1,7 +1,7 @@
 var lazy = require("lazy"),
         fs = require("fs"),
         mongo = require('mongoskin'),
-        db = mongo.db('127.0.0.1:27017/mydb?auto_reconnect=true');
+        db = mongo.db('mongodb://heroku:b7828f91799ed3e4a3874288d7043823@alex.mongohq.com:10020/app1717097?auto_reconnect=true');
 
 db.bind('prices');
 
