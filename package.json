@@ -4,7 +4,7 @@
     "description": "search on affordability",
     "dependencies" : {
         "lazy" : "1.0.7",
-	"mongoskin" : "0.3.6",
+	"mongoskin" : "1.4.4",
    	"sax" : "0.3.2"
     }
 }
