@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "description": "search on affordability",
     "dependencies" : {
-        "lazy" : "1.0.7",
+        "lazy" : "1.0.11",
 	"mongoskin" : "1.4.4",
-   	"sax" : "0.3.2"
+   	"sax" : "0.6.1"
     }
 }
 
