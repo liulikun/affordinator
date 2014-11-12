@@ -67,6 +67,8 @@ function search(query, resp) {
     }
 
     db.prices.find(searchKey).toArray(function(err, subs){
+        console.log('ERR:', err);
+        console.log('SUBS:', subs);
         if (subs) {
             resp.writeHeader(200, {"Content-Type": "text/plain"});
             resp.write(JSON.stringify(subs));
